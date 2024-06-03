@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
-import AuthorList from '../authors.json'
 import Card from '../components/Card'
+import { AuthorListProps, BookProps } from '../utils/types';
 
-type IsHardCoverProps = {
-    isHardCoverOnly: boolean
+type CardsProps = {
+  isHardCoverOnly: boolean,
+  gender: string[],
+  authorList: AuthorListProps,
+  isLoading: boolean,
+  books: BookProps[]
 }
-
-const Cards = ({isHardCoverOnly}: IsHardCoverProps) => {
-    const gender = [...new Set(AuthorList.authors.map(item => item.gender))];
+const Cards = ({isHardCoverOnly,gender,authorList,isLoading,books}: CardsProps) => { 
+  debugger;
   return (
     <div className='cards'>
-        {gender.map((item,index) => 
+      {isLoading && <p>loading.....</p>}
+        {gender?.map((item,index) => 
         <Card 
             key={index} 
             gender={item} 
             isHardCoverOnly={isHardCoverOnly}
-            authorList={AuthorList}
+            authorList={authorList}
+            books={books}
         />)}
     </div>
   )

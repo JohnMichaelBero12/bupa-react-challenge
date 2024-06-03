@@ -1,14 +1,16 @@
 import React from 'react'
-import { filterBooks, AuthorListProps } from  '../utils/helpers';
-
+import { AuthorListProps,BookProps } from '../utils/types';
+import { filterBooks } from  '../utils/helpers';
 type CardProps = {
     gender: string,
     isHardCoverOnly: boolean,
-    authorList: AuthorListProps
+    authorList: AuthorListProps,
+    books: BookProps[]
 }
 
 const Card = ({gender, isHardCoverOnly, authorList}: CardProps) => {
-    const books = filterBooks(authorList, isHardCoverOnly, gender);
+    debugger;
+    const books = filterBooks(authorList);
     return (
     <div className="card">
         <h2 className="card__heading">

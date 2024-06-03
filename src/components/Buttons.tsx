@@ -1,14 +1,17 @@
 import React from 'react'
 type HandleHardCoverBtnProps = {
-    handleHardCoverBtn: () => void,
-    handleGetBooksBtn: () => void
+    handleFilterByTypes: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+    handleGetBooksBtn: () => void,
+    types: string[]
 }
 
-const Buttons = ({handleHardCoverBtn, handleGetBooksBtn}: HandleHardCoverBtnProps) => {
+const Buttons = ({handleFilterByTypes, handleGetBooksBtn, types}: HandleHardCoverBtnProps) => {
 
   return (
     <div className='button'>
-        <a href="#" onClick={handleHardCoverBtn}>Hardcover only</a>
+        {types.map((item) => (
+          <a href="#" onClick={(e) => handleFilterByTypes(e)}>{item}</a>
+        ))}
         <button onClick={handleGetBooksBtn}>Get Books</button>
     </div>
   )

@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
-import Cards from './components/Cards'
-import Buttons from './components/Buttons'
-const App = () => {
-  const [isHardCoverOnly, setIsHardCoverOnly] = useState(false);
+import BookList from './pages/BookListPage'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
-  //toggle Hardcover and get all books
-  const handleHardCoverBtn = () => setIsHardCoverOnly(true) ;
-  const handleGetBooksBtn = () => setIsHardCoverOnly(false);
-  
+// Create a client
+const queryClient = new QueryClient()
+
+const App = () => {
   return (
     <>
-    <Cards isHardCoverOnly={isHardCoverOnly} />
-    <Buttons 
-      handleHardCoverBtn={handleHardCoverBtn}
-      handleGetBooksBtn={handleGetBooksBtn}
-    />
+    <QueryClientProvider client={queryClient}>
+      <BookList />
+    </QueryClientProvider>
     </>
   )
 }

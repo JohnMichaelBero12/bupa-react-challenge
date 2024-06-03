@@ -1,0 +1,1 @@
+export const STRING_BASEURL = "http://localhost:8000/authors";

@@ -1,13 +1,15 @@
 export type AuthorListProps = 
-    {   
-        authors:
-        {
+    {
+        name: string,
+        gender: string,
+        age: number,
+        books: {
             name: string,
-            gender: string,
-            age: number,
-            books: {
-                name: string,
-                type: string
-            }[] | null
-        }[]
-    }
+            type: string
+        }[] | null
+    }[]
+    
+export type BookProps = {
+    name: string,
+    type: string
+}
