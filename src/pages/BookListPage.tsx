@@ -12,23 +12,18 @@ type genderProps = {
   }
   
 const BookListPage = () => {
-    const [isHardCoverOnly, setIsHardCoverOnly] = useState(false);
+    const [bookType, setBookType] = useState("");
 
-    const handleFilterByTypes = () => setIsHardCoverOnly(true) ;
-    const handleGetBooksBtn = () => setIsHardCoverOnly(false);
-
-    const {data: authorList, isLoading, isError, isFetched } = useQuery({
-        queryKey: ["fetchData"],
-        queryFn: () => fetchData(STRING_BASEURL),
-    })
-   // const {data: authorList, isLoading } = getData(STRING_BASEURL);
-    const gender: any[] = [...new Set(authorList?.data?.map((item:genderProps) => item.gender))];
+    const handleFilterByTypes = (type: string) => setBookType(type);
+   const handleGetBooksBtn = () => setBookType("");
+   const {data: authorList, isLoading } = getData(STRING_BASEURL);
+    const gender = [...new Set(authorList?.data?.map((item:genderProps) => item.gender))];
     const books = filterBooks(authorList?.data);
-    const types = [...new Set(books.map((item) => item.type))];
+    const types = [...new Set(books?.map((item) => item.type))];
   return (
     <>
         <Cards 
-            isHardCoverOnly={isHardCoverOnly} 
+            bookType={bookType} 
             gender={gender} 
             authorList={authorList?.data} 
             isLoading={isLoading}

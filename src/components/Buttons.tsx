@@ -1,6 +1,6 @@
 import React from 'react'
 type HandleHardCoverBtnProps = {
-    handleFilterByTypes: (e: React.MouseEvent<HTMLAnchorElement>) => void,
+    handleFilterByTypes: (bookTypes: string) => void,
     handleGetBooksBtn: () => void,
     types: string[]
 }
@@ -9,8 +9,8 @@ const Buttons = ({handleFilterByTypes, handleGetBooksBtn, types}: HandleHardCove
 
   return (
     <div className='button'>
-        {types.map((item) => (
-          <a href="#" onClick={(e) => handleFilterByTypes(e)}>{item}</a>
+        {types.map((item,index) => (
+          <a href="#" key={index} onClick={(e) => handleFilterByTypes((e.target as HTMLElement).innerText)}>{item}</a>
         ))}
         <button onClick={handleGetBooksBtn}>Get Books</button>
     </div>

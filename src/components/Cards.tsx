@@ -3,14 +3,13 @@ import Card from '../components/Card'
 import { AuthorListProps, BookProps } from '../utils/types';
 
 type CardsProps = {
-  isHardCoverOnly: boolean,
-  gender: string[],
+  bookType: string,
+  gender: any[],
   authorList: AuthorListProps,
   isLoading: boolean,
   books: BookProps[]
 }
-const Cards = ({isHardCoverOnly,gender,authorList,isLoading,books}: CardsProps) => { 
-  debugger;
+const Cards = ({bookType,gender,authorList,isLoading,books}: CardsProps) => { 
   return (
     <div className='cards'>
       {isLoading && <p>loading.....</p>}
@@ -18,7 +17,7 @@ const Cards = ({isHardCoverOnly,gender,authorList,isLoading,books}: CardsProps) 
         <Card 
             key={index} 
             gender={item} 
-            isHardCoverOnly={isHardCoverOnly}
+            bookType={bookType}
             authorList={authorList}
             books={books}
         />)}
